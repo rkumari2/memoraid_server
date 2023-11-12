@@ -12,7 +12,7 @@ CREATE TABLE subjects (
 CREATE TABLE users (
     id INT GENERATED ALWAYS AS IDENTITY,
     name VARCHAR(50) NOT NULL,
-    email VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL UNIQUE,
     password VARCHAR(100) NOT NULL,
     PRIMARY KEY (id)
 );
@@ -37,3 +37,6 @@ CREATE TABLE flashcards (
 );
 
 
+INSERT INTO users (name, email, password)
+VALUES
+('user', 'user@example.com', 'jkl')

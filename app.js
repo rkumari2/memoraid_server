@@ -4,13 +4,13 @@ const logger = require('morgan')
 
 require('dotenv').config()
 
-const app = express()
+const userRouter = require('./routes/userRouter')
 
+const app = express()
 app.use(cors({
     origin: 'http://localhost:5173', 
     credentials: true
 }))
-
 app.use(express.json())
 app.use(logger('dev'))
 
@@ -20,5 +20,7 @@ app.get('/', (req, res) => {
         description: 'Welcome to Memoraide!'
     })
 })
+
+app.use('/users', userRouter)
 
 module.exports = app
