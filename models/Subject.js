@@ -25,6 +25,15 @@ class Subject {
         return new Subject(response.rows[0])
     }
 
+    static async getByUserId (user_id) {
+        const response = await db.query('SELECT * FROM subjects WHERE user_id = $1', [user_id])
+
+        if (response.rows.length === 0) {
+            throw new Error ('Unable to locate subject by user_id')
+        } 
+        return response.rows.map(s => new Subject(s))
+    }
+
     static async createSubject (data) {
         try {
             const { user_id, subject } = data;
