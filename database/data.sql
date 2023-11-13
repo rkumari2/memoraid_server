@@ -41,9 +41,4 @@ CREATE TABLE flashcards (
 
 INSERT INTO users (name, email, password)
 VALUES
-('user', 'user@example.com', 'jkl');
-
-INSERT INTO subjects (user_id, subject)
-VALUES
-(1, 'maths'),
-(1, 'english')
+('exampleUser', 'exampleuser@example.com', 'jkl');
