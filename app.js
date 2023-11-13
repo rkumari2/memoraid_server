@@ -5,6 +5,7 @@ const logger = require('morgan')
 require('dotenv').config()
 
 const userRouter = require('./routes/userRouter')
+const subjectRouter = require('./routes/subjectRouter')
 
 const app = express()
 app.use(cors({
@@ -22,5 +23,7 @@ app.get('/', (req, res) => {
 })
 
 app.use('/users', userRouter)
+
+app.use('/subjects', subjectRouter)
 
 module.exports = app
