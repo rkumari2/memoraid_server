@@ -29,16 +29,21 @@ CREATE TABLE subjects (
 
 CREATE TABLE flashcards (
     id INT GENERATED ALWAYS AS IDENTITY, 
-    user_id INT NOT NULL, 
+    -- user_id INT NOT NULL, 
     subject_id INT NOT NULL, 
     question VARCHAR(1000) NOT NULL, 
     answer VARCHAR(1000) NOT NULL,
     PRIMARY KEY (id),
-    FOREIGN KEY (user_id) REFERENCES users(id),
+    -- FOREIGN KEY (user_id) REFERENCES users(id),
     FOREIGN KEY (subject_id) REFERENCES subjects(id)
 );
 
 
 INSERT INTO users (name, email, password)
 VALUES
-('user', 'user@example.com', 'jkl')
+('user', 'user@example.com', 'jkl');
+
+INSERT INTO subjects (user_id, subject)
+VALUES
+(1, 'maths'),
+(1, 'english')

@@ -11,7 +11,8 @@ async function index (req, res) {
 
 async function create (req, res) {
     try {
-        const data = req.body; 
+        const user_id = parseInt(req.params.user_id); 
+        const data = { user_id, ...req.body };
         const result = await Subject.createSubject(data)
         res.status(201).send(result)
     } catch (err) {

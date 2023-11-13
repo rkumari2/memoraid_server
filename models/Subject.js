@@ -42,7 +42,7 @@ class Subject {
             if (userExists.rows.length === 0) {
               throw new Error('User does not exist');
             }
-
+            
             const response = await db.query('INSERT INTO subjects (user_id, subject) VALUES ($1, $2) RETURNING id;', [user_id, subject]);
             const newSubjectId = response.rows[0].id;
             const newSubject = await Subject.getById(newSubjectId);

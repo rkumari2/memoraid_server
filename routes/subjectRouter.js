@@ -6,6 +6,6 @@ const subjectRouter = Router()
 
 subjectRouter.get('/', subjectController.index)
 subjectRouter.get('/:user_id', subjectController.show)
-subjectRouter.post('/new', subjectController.create)
+subjectRouter.post('/:user_id/new', subjectController.create)
 
 module.exports = subjectRouter
