@@ -30,6 +30,27 @@ async function show (req, res) {
     }
 }
 
+async function update(req, res) {
+    try {
+        const id = parseInt(req.params.id);
+        const data = req.body;
+        const updatedCard = await Flashcard.updateCard(id, data);
+        res.status(200).json(updatedCard);
+    } catch (err) {
+        res.status(400).json({ 'error': err.message });
+    }
+}
+
+async function destroy(req, res) {
+    try {
+        const id = parseInt(req.params.id);
+        await Flashcard.deleteCard(id);
+        res.status(204).send(); 
+    } catch (err) {
+        res.status(400).json({ 'error': err.message });
+    }
+}
+
 module.exports = {
-    index, create, show
+    index, create, show, update, destroy
 }

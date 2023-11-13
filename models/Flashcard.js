@@ -60,6 +60,29 @@ class Flashcard {
 
         return response.rows.map(c => new Flashcard(c))
     }
+
+    static async updateCard(id, data) {
+        try {
+            const response = await db.query('UPDATE flashcards SET question = $1, answer = $2 WHERE id = $3 RETURNING *;', [data.question, data.answer, id]);
+            if (response.rows.length === 0) {
+                throw new Error('Unable to update flashcard');
+            }
+            return new Flashcard(response.rows[0]);
+        } catch (error) {
+            throw error;
+        }
+    }
+
+    static async deleteCard(id) {
+        try {
+            const response = await db.query('DELETE FROM flashcards WHERE id = $1 RETURNING *;', [id]);
+            if (response.rows.length === 0) {
+                throw new Error('Unable to delete flashcard');
+            }
+        } catch (error) {
+            throw error;
+        }
+    }
 }
 
 module.exports = Flashcard
