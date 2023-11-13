@@ -61,6 +61,20 @@ class Flashcard {
         return response.rows.map(c => new Flashcard(c))
     }
 
+    static async getRandomCard(subject_id) {
+        try {
+            const response = await db.query('SELECT * FROM flashcards WHERE subject_id = $1 ORDER BY random() LIMIT 1;', [subject_id]);
+
+            if (response.rows.length === 0) {
+                throw new Error('No flashcards available for this subject');
+            }
+
+            return new Flashcard(response.rows[0]);
+        } catch (error) {
+            throw error;
+        }
+    }
+
     static async updateCard(id, data) {
         try {
             const response = await db.query('UPDATE flashcards SET question = $1, answer = $2 WHERE id = $3 RETURNING *;', [data.question, data.answer, id]);

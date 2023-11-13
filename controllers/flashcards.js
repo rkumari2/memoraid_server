@@ -51,6 +51,16 @@ async function destroy(req, res) {
     }
 }
 
+async function showRandom(req, res) {
+    try {
+        const subject_id = parseInt(req.params.subject_id);
+        const randomCard = await Flashcard.getRandomCard(subject_id);
+        res.status(200).json(randomCard);
+    } catch (err) {
+        res.status(404).json({ error: err.message });
+    }
+}
+
 module.exports = {
-    index, create, show, update, destroy
+    index, create, show, update, destroy, showRandom
 }
