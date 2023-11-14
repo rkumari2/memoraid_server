@@ -57,8 +57,8 @@ async function login (req, res) {
 
 async function destroy (req, res) {
     try {
-        const id = req.params.user_id
-        const tokenToDelete = await Token.getByUserId(id)
+        const id = req.params.id
+        const tokenToDelete = await Token.getById(id)
         await tokenToDelete.destroy()
         res.sendStatus(204)
     } catch (err) {
