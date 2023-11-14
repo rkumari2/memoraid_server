@@ -24,7 +24,7 @@ class Token {
 
     static async getById(id) {
         const response = await db.query("SELECT * FROM tokens WHERE id = $1", [id]);
-        if (response.rows.length != 1) {
+        if (response.rows.length === 0) {
             throw new Error("Unable to locate token.");
         } else {
             return new Token(response.rows[0]);
@@ -50,7 +50,7 @@ class Token {
     }
 
     async destroy() {
-        const response = await db.query ('DELETE FROM tokens WHERE user_id=$1 RETURNING *', [this.user_id])
+        const response = await db.query ('DELETE FROM tokens WHERE id=$1 RETURNING *', [this.id])
         return new Token(response.rows[0])
     }
 }
