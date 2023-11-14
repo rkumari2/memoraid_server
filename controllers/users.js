@@ -48,7 +48,7 @@ async function login (req, res) {
             throw new Error ('Wrong Credentials')
         } else {
             const token = await Token.create(user.id)
-            res.status(200).json({authenticated: true, token: token.token})
+            res.status(200).json({authenticated: true, token: token.token, token_id: token.id})
         }
     } catch (err) {
         res.status(401).json({error: err.message})
