@@ -9,10 +9,7 @@ const subjectRouter = require('./routes/subjectRouter')
 const flashcardRouter = require('./routes/flashcardRouter')
 
 const app = express()
-app.use(cors({
-    origin: 'http://localhost:5173', 
-    credentials: true
-}))
+app.use(cors())
 app.options('*', cors());
 app.use(express.json())
 app.use(logger('dev'))
