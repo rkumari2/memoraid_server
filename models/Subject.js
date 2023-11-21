@@ -8,7 +8,7 @@ class Subject {
     }
 
     static async getAll() {
-        const response = await db.query('SELECT * FROM subjects;')
+        const response = await db.query('SELECT * FROM subjects ORDER BY id DESC;')
         if (response.rows.length === 0) {
             throw new Error ('No subjects available')
         } else {
