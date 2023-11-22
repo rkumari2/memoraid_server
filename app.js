@@ -7,6 +7,7 @@ require('dotenv').config()
 const userRouter = require('./routes/userRouter')
 const subjectRouter = require('./routes/subjectRouter')
 const flashcardRouter = require('./routes/flashcardRouter')
+const scoreRouter = require('./routes/scoreRouter')
 
 const app = express()
 app.use(cors())
@@ -26,5 +27,7 @@ app.use('/users', userRouter)
 app.use('/subjects', subjectRouter)
 
 app.use('/flashcards', flashcardRouter)
+
+app.use('/scores', scoreRouter)
 
 module.exports = app

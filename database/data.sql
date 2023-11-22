@@ -41,11 +41,14 @@ CREATE TABLE flashcards (
 
 CREATE TABLE scores (
     id INT GENERATED ALWAYS AS IDENTITY, 
+    user_id INT NOT NULL,
     date VARCHAR (12) NOT NULL, 
     totalScore INT NOT NULL,
     rightAnswer INT NOT NULL, 
     totalQuestions INT NOT NULL, 
-    PRIMARY KEY (id)
+    subject VARCHAR (1000) NOT NULL,
+    PRIMARY KEY (id),
+    FOREIGN KEY (user_id) REFERENCES users(id)
 );
 
 
