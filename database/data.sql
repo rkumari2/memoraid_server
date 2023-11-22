@@ -1,7 +1,8 @@
 DROP TABLE IF EXISTS flashcards;
 DROP TABLE IF EXISTS subjects; 
 DROP TABLE IF EXISTS tokens; 
-DROP TABLE IF EXISTS users; 
+DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS scores;
 
 CREATE TABLE users (
     id INT GENERATED ALWAYS AS IDENTITY,
@@ -36,6 +37,15 @@ CREATE TABLE flashcards (
     PRIMARY KEY (id),
     -- FOREIGN KEY (user_id) REFERENCES users(id),
     FOREIGN KEY (subject_id) REFERENCES subjects(id)
+);
+
+CREATE TABLE scores (
+    id INT GENERATED ALWAYS AS IDENTITY, 
+    date VARCHAR (12) NOT NULL, 
+    totalScore INT NOT NULL,
+    rightAnswer INT NOT NULL, 
+    totalQuestions INT NOT NULL, 
+    PRIMARY KEY (id)
 );
 
 
