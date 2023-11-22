@@ -52,6 +52,3 @@ CREATE TABLE scores (
 );
 
 
-INSERT INTO users (name, email, password)
-VALUES
-('exampleUser', 'exampleuser@example.com', 'jkl');
