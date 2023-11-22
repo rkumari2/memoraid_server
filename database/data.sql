@@ -43,7 +43,7 @@ CREATE TABLE scores (
     id INT GENERATED ALWAYS AS IDENTITY, 
     user_id INT NOT NULL,
     date VARCHAR (12) NOT NULL, 
-    totalScore INT NOT NULL,
+    totalScore DECIMAL(5, 1) NOT NULL,
     rightAnswer INT NOT NULL, 
     totalQuestions INT NOT NULL, 
     subject VARCHAR (1000) NOT NULL,

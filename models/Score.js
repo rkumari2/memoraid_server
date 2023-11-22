@@ -29,8 +29,6 @@ class Score {
     static async getById (id) {
         const response = await db.query('SELECT * FROM scores WHERE id = $1', [id])
 
-        console.log(response.rows[0]);
-
         if (response.rows.length === 0) {
             throw new Error ('Unable to locate scores')
         } 
@@ -42,17 +40,17 @@ class Score {
             const {user_id, date, totalScore, rightAnswer, totalQuestions, subject} = data
 
             const userExists = await db.query ('SELECT * FROM users WHERE id = $1', [user_id])
+
             if (userExists.rows.length === 0) {
                 throw new Error ('user does not exist')
             }
 
-            const response = await db.query('INSERT INTO scores (user_id, date, totalScore, rightAnswer, totalQuestions, Subject) VALUES ($1, $2, $3, $4, $5, $6) RETURNING id', [user_id, date, totalScore, rightAnswer, totalQuestions, subject])
+            const response = await db.query('INSERT INTO scores (user_id, date, totalScore, rightAnswer, totalQuestions, subject) VALUES ($1, $2, $3, $4, $5, $6) RETURNING id', [user_id, date, totalScore, rightAnswer, totalQuestions, subject])
 
             const newId = response.rows[0].id
             const newScoreCard = await Score.getById(newId)
 
             return newScoreCard;
-            // console.log('new score is:', newScoreCard)
 
         } catch (err) {
             throw err

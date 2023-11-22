@@ -11,7 +11,7 @@ async function index (req, res) {
 
 async function create (req, res) {
     try {
-        const user_id = parseInt(req.params.user_id); 
+        const user_id = parseInt(req.params.user_id);
         const data = { user_id, ...req.body };
         const result = await Score.createScore(data)
         res.status(201).send(result)
