@@ -16,7 +16,7 @@ class Score {
         if (response.rows.length === 0) {
             throw new Error ('No score data available')
         } else {
-            return response.rows.map(s => new Score(c))
+            return response.rows.map(s => new Score(s))
         }
     }
 
@@ -26,7 +26,7 @@ class Score {
         // if (response.rows.length === 0) {
         //     throw new Error ('No scores available for this user')
         // }
-        
+
         return response.rows.map(c => new Score(c))
     }
 
