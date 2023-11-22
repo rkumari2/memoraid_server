@@ -5,9 +5,9 @@ class Score {
         this.id = data.id
         this.user_id = data.user_id
         this.date = data.date
-        this.totalScore = data.totalScore
-        this.rightAnswer = data.rightAnswer
-        this.totalQuestions = data.totalQuestions
+        this.totalScore = data.totalscore
+        this.rightAnswer = data.rightanswer
+        this.totalQuestions = data.totalquestions
         this.subject = data.subject
     }
 
@@ -33,6 +33,8 @@ class Score {
     static async getById (id) {
         const response = await db.query('SELECT * FROM scores WHERE id = $1', [id])
 
+        console.log(response.rows[0]);
+
         if (response.rows.length === 0) {
             throw new Error ('Unable to locate scores')
         } 
@@ -51,9 +53,10 @@ class Score {
             const response = await db.query('INSERT INTO scores (user_id, date, totalScore, rightAnswer, totalQuestions, Subject) VALUES ($1, $2, $3, $4, $5, $6) RETURNING id', [user_id, date, totalScore, rightAnswer, totalQuestions, subject])
 
             const newId = response.rows[0].id
-            const newScoreCard = await Score.getByUserId(newId)
+            const newScoreCard = await Score.getById(newId)
 
-            return newScoreCard;
+            // return newScoreCard;
+            console.log('new score is:', newScoreCard)
 
         } catch (err) {
             throw err
