@@ -23,10 +23,6 @@ class Score {
     static async getByUserId (user_id) {
         const response = await db.query('SELECT * FROM scores WHERE user_id = $1', [user_id])
 
-        // if (response.rows.length === 0) {
-        //     throw new Error ('No scores available for this user')
-        // }
-
         return response.rows.map(c => new Score(c))
     }
 
@@ -55,8 +51,8 @@ class Score {
             const newId = response.rows[0].id
             const newScoreCard = await Score.getById(newId)
 
-            // return newScoreCard;
-            console.log('new score is:', newScoreCard)
+            return newScoreCard;
+            // console.log('new score is:', newScoreCard)
 
         } catch (err) {
             throw err
