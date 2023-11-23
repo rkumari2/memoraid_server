@@ -21,7 +21,7 @@ class Score {
     }
 
     static async getByUserId (user_id) {
-        const response = await db.query('SELECT * FROM scores WHERE user_id = $1', [user_id])
+        const response = await db.query('SELECT * FROM scores WHERE user_id = $1 ORDER BY id DESC', [user_id])
 
         return response.rows.map(c => new Score(c))
     }
