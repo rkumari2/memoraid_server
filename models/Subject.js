@@ -26,7 +26,7 @@ class Subject {
     }
 
     static async getByUserId (user_id) {
-        const response = await db.query('SELECT * FROM subjects WHERE user_id = $1', [user_id])
+        const response = await db.query('SELECT * FROM subjects WHERE user_id = $1 ORDER BY id DESC', [user_id])
 
         if (response.rows.length === 0) {
             throw new Error ('Unable to locate subject by user_id')
