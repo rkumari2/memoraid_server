@@ -12,7 +12,7 @@ class Score {
     }
 
     static async getAll () {
-        const response = await db.query('SELECT * FROM scores ORDER BY id DESC')
+        const response = await db.query('SELECT * FROM scores ORDER BY date DESC')
         if (response.rows.length === 0) {
             throw new Error ('No score data available')
         } else {
