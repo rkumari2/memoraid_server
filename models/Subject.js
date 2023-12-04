@@ -52,6 +52,23 @@ class Subject {
             throw error;
           }
     }
+
+    static async DeleteSubject (id) {
+        try {
+            const subjectExists = await db.query('SELECT 1 FROM subjects WHERE id = $1', [id]);
+            if (subjectExists.rows.length === 0) {
+                throw new Error('Subject does not exist');
+            }
+
+            await db.query('DELETE FROM flashcards WHERE subject_id = $1', [id]);
+
+            await db.query('DELETE FROM subjects WHERE id = $1', [id]);
+
+            return { success: true, message: 'Subject and associated flashcards deleted successfully' };
+        } catch (error) {
+            throw error;
+        }
+    }
 }
 
 module.exports = Subject

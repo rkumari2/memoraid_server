@@ -52,7 +52,7 @@ class Flashcard {
     }
 
     static async getBySubjectId(subject_id) {
-        const response = await db.query('SELECT * FROM  flashcards WHERE subject_id = $1;', [subject_id])
+        const response = await db.query('SELECT * FROM  flashcards WHERE subject_id = $1 ORDER BY id DESC;', [subject_id])
         
         if (response.rows.length === 0) {
             throw new Error ('No flashcards available in this subject')

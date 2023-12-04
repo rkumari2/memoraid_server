@@ -31,6 +31,17 @@ async function show (req, res) {
     }
 }
 
+async function destroy (req, res) {
+    try {
+        const subjectId = parseInt(req.params.subjectId)
+        await Subject.DeleteSubject(subjectId)
+        res.status(204).send()
+
+    } catch (err) {
+        res.status(400).json({ 'error': err.message });
+    }
+}
+
 module.exports = {
-    index, create, show
+    index, create, show, destroy
 }
